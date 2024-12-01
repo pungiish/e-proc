@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
     public translate: TranslateService,
     private toastNotification: ToastNotificationService,
     private permissionsService: NgxPermissionsService
-    ) {
+  ) {
 
   }
 
@@ -28,13 +28,13 @@ export class AuthGuard implements CanActivate {
     if (this.auth.isLoggedIn()) {
 
       //-- Load USER Permissions for the current Role To overcome Refresh Problem
-      loadPermissions(this.permissionsService,this.auth.getRolePermissions(this.auth.getSelectedRole()));
+      loadPermissions(this.permissionsService, this.auth.getRolePermissions(this.auth.getSelectedRole()));
       return true;
     }
     else {
       this.router.navigateByUrl('/auth/login').then(() => {
-         //let title = this.translate.instant('error');
-         //this.toastNotification.showError('error', 'UnAuthorized Access, Please Login first');
+        let title = this.translate.instant('error');
+        this.toastNotification.showError('error', 'UnAuthorized Access, Please Login first');
       });
 
       return false;

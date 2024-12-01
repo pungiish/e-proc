@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
-  userFullName : string = "khalifaa";
+  userFullName: string = "jan";
   @Input()
   isAuthenticated: boolean = true;
   // userRoles  : UserRole[];
@@ -49,27 +49,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
   directions = NbLayoutDirection;
   currentDirection!: NbLayoutDirection;
   currentTheme = 'default';
-  defaultLang ="ar-SA";
-  userPicture : string = "/assets/logo.png";
-  logoPicture : string = "/assets/amana-logo.ico";
+  defaultLang = "en-US";
+  userPicture: string = "/assets/logo.png";
+  logoPicture: string = "/assets/amana-logo.ico";
 
 
-  userMenu = [ { title: 'Profile', link: '/pages/user-profile'   }, { title: 'Log out', link: '/auth/logout'  } ];
+  userMenu = [{ title: 'Profile', link: '/pages/user-profile' }, { title: 'Log out', link: '/auth/logout' }];
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private router: Router,
-              private themeService: NbThemeService,
-              private layoutService: LayoutService,
-              private i18nService: I18nService,
-              private directionService: NbLayoutDirectionService,
-              private breakpointService: NbMediaBreakpointsService) {
+    private menuService: NbMenuService,
+    private router: Router,
+    private themeService: NbThemeService,
+    private layoutService: LayoutService,
+    private i18nService: I18nService,
+    private directionService: NbLayoutDirectionService,
+    private breakpointService: NbMediaBreakpointsService) {
 
     this.directionService.onDirectionChange()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(newDirection => this.currentDirection = newDirection);
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(newDirection => this.currentDirection = newDirection);
 
-    if( this.i18nService.language === "ar-SA"){
+    if (this.i18nService.language === "ar-SA") {
       this.directionService.setDirection(this.directions.RTL);
     }
   }
@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.supportedLanguages = this.i18nService.supportedLanguages;
     this.log.info(this.defaultLang);
     this.log.info(this.supportedLanguages);
-    this.log.info("khalifaa");
+    this.log.info("jan");
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
@@ -100,10 +100,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   toggleDirection(newDirection: NbLayoutDirection) {
     this.directionService.setDirection(newDirection);
-//keep this as it will change the lang
-    if(newDirection == "rtl"){
+    //keep this as it will change the lang
+    if (newDirection == "rtl") {
       this.i18nService.language = 'ar-SA';
-    }else{
+    } else {
       this.i18nService.language = 'en-US';
     }
   }
@@ -117,7 +117,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.themeService.changeTheme(themeName);
   }
 
-  changeRole(roleId : number) {
+  changeRole(roleId: number) {
     this.currentRole = roleId;
     this.router.navigateByUrl("/");
   }
@@ -129,7 +129,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  onDirectionSwitch() : void{
+  onDirectionSwitch(): void {
     // location.reload();
   }
 

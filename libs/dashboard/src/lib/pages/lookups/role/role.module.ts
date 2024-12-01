@@ -16,15 +16,15 @@ const routes: Routes = [{
   canActivate: [NgxPermissionsGuard],
   data: {
     permissions: {
-      only: ['SuperAdmin','roles'],
+      //only: ['SuperAdmin','roles'],
     }
   },
   children: [
     {
-    path: 'list',
-    component: RoleComponent,
+      path: 'list',
+      component: RoleComponent,
     }
-],
+  ],
 }];
 @NgModule({
   imports: [

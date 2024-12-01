@@ -16,31 +16,31 @@ export class AppComponent implements OnInit {
     private router: Router,
     private permissionsService: NgxPermissionsService,
     @Inject(DOCUMENT) private document: Document
-     )
-    {
-      // this.trackAuthentication();
+  ) {
+    // this.trackAuthentication();
+  }
+
+  ngOnInit(): void {
+
+    this.trackAuthentication();
+
+  }
+
+  trackAuthentication() {
+    this.log.info("trackAuthentication");
+    const isAuthenticated = this.authService.isLoggedIn();
+    this.log.info(isAuthenticated);
+
+    if (!isAuthenticated) {
+      this.goToUrl();
+      const permissions = this.authService.getRolePermissions(1);
+      console.log(permissions)
+      loadPermissions(this.permissionsService, permissions);
+      // this.authService.lo
     }
+  }
 
-    ngOnInit(): void {
-
-      this.trackAuthentication();
-
-    }
-
-    trackAuthentication() {
-      this.log.info("trackAuthentication");
-        const isAuthenticated = this.authService.isLoggedIn();
-        this.log.info(isAuthenticated);
-
-        if(!isAuthenticated){
-          this.goToUrl();
-          const permissions = this.authService.getRolePermissions(1);
-          loadPermissions(this.permissionsService, permissions);
-          // this.authService.lo
-        }
-    }
-
-    goToUrl(): void {
-      // this.document.location.href = 'http://localhost:4200/auth/login';
+  goToUrl(): void {
+    this.document.location.href = 'http://localhost:4200';
   }
 }

@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   apiBaseUrl: 'https://localhost:44388/api/v1.0',
   defaultLanguage: 'en-US',
-  supportedLanguages: ['en-US', 'ar-SA'],
+  supportedLanguages: ['en-US'],
 };
 
 /*
